@@ -16,6 +16,9 @@ export default function App() {
           <Route path="/">
             <Home />
           </Route>
+          <Route path="/auth">
+            <Auth />
+          </Route>
           <Route path="/watch">
             <Watch />
           </Route>
