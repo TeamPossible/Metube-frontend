@@ -1,4 +1,11 @@
 import { Route, Switch } from 'react-router-dom';
+import { Home } from './views/Home';
+import { Profile } from './views/Profile';
+import { Upload } from './views/Upload';
+import { Watch } from './views/Watch';
+import { WatchHistory } from './views/WatchHistory';
+import { EditProfile } from './views/EditProfile';
+import { EditUpload } from './views/EditUpload';
 
 export default function App() {
   return (
@@ -25,7 +32,7 @@ export default function App() {
             <EditUpload />
           </Route>
           <Route path="profile/history">
-            <EditUpload />
+            <WatchHistory />
           </Route>
         </Switch>
       </DataProvider>
