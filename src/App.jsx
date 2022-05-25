@@ -10,41 +10,48 @@ import { EditProfile } from './views/EditProfile';
 import { WatchHistory } from './views/WatchHistory';
 import { DataProvider } from './context/DataProvider';
 import { UserProvider } from './context/UserProvider';
+import { AuthProvider } from './context/AuthProvider';
+import { CheckAuth } from './components/checkAuth';
+import { LoadingProvider } from './context/LoadingProvider';
 
 export default function App() {
   return (
     <>
       <Header />
-      <UserProvider>
-        <DataProvider>
-          <Switch>
-            <Route path="/">
-              <Home />
-            </Route>
-            <Route path="/auth">
-              <Auth />
-            </Route>
-            <Route path="/watch">
-              <Watch />
-            </Route>
-            <Route path="/profile/:id">
-              <Profile />
-            </Route>
-            <Route path="/profile/:id/edit">
-              <EditProfile />
-            </Route>
-            <Route path="/upload/">
-              <Upload />
-            </Route>
-            <Route path="/upload/edit/:id">
-              <EditMedia />
-            </Route>
-            <Route path="profile/history">
-              <WatchHistory />
-            </Route>
-          </Switch>
-        </DataProvider>
-      </UserProvider>
+      <AuthProvider>
+        <UserProvider>
+          <LoadingProvider>
+            <DataProvider>
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route exact path="/auth">
+                  <Auth />
+                </Route>
+                <CheckAuth exact path="/watch">
+                  <Watch />
+                </CheckAuth>
+                <CheckAuth exact path="/profile/history">
+                  <WatchHistory />
+                </CheckAuth>
+                <Route exact path="/profile/:id">
+                  <Profile />
+                </Route>
+                <Route exact path="/profile/:id/edit">
+                  <EditProfile />
+                </Route>
+                <CheckAuth exact path="/upload">
+                  <Upload />
+                </CheckAuth>
+                <Route exact path="/upload/edit/:id">
+                  <EditMedia />
+                </Route>
+              </Switch>
+            </DataProvider>
+          </LoadingProvider>
+        </UserProvider>
+      </AuthProvider>
     </>
   );
 }
