@@ -13,17 +13,24 @@ export const Auth = () => {
   const [username, setUsername] = useState('');
   const [hasAccount, setHasAccount] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    try {
+      const res = await signIn({ password, email });
+      console.log(res);
+      setUser(res);
+      history.push(location.state.from);
+    } catch (error) {
+      throw error;
+    }
   };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
       const res = await signUp({ username, password, email });
-      console.log('****response****', res);
       setUser(res);
+      const cookie = window.localStorage.setItem('user', res.username);
       history.push(location.state.from);
     } catch (error) {
       throw error;
@@ -35,7 +42,7 @@ export const Auth = () => {
   hasAccount
     ? (content = (
         <>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSignIn}>
             <legend>Sign In</legend>
             <input
               placeholder="email"
