@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { signUp, signIn } from '../utils/fetch-utils';
 
 export const Auth = () => {
   const [email, setEmail] = useState('');
@@ -11,8 +12,14 @@ export const Auth = () => {
     console.log(email, password);
   };
 
-  const handleSignUp = (e) => {
-    
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await signUp({ username, password, email });
+      console.log('****response****', res);
+    } catch (error) {
+      throw error;
+    }
   }
 
   let content; 
@@ -38,7 +45,7 @@ export const Auth = () => {
         <button onClick={() => setHasAccount(false)}>Don't have an account?</button>
       </form>
     </>) : content = (<>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSignUp}>
         <legend>Sign Up</legend>
         <input
           placeholder="email"
@@ -67,6 +74,6 @@ export const Auth = () => {
     </>)
 
   return (
-    {content}
+    content
   );
 };

@@ -3,12 +3,14 @@ export const signUp = async ({ username, password, email }) => {
     const res = await fetch(`${process.env.API_URL}/api/v1/users`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        
       },
       body: JSON.stringify({
         username, password, email
       }),
       mode: 'cors',
+      credentials: 'include',
     })
       if (!res.ok) throw new Error('Invalid login credentials')
       return res.json();
@@ -23,7 +25,8 @@ export const signIn = async ({ password, email }) => {
     const res = await fetch(`${process.env.API_URL}/api/v1/users/sessions`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        
       },
       body: JSON.stringify({
         password, email
