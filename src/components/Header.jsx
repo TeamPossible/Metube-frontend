@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { signOut } from '../utils/fetch-utils';
-import styles from '../styles/Header.css';
+import { useLocation } from 'react-router-dom';
 
 export const Header = () => {
+  const location = useLocation();
   const auth = useAuth();
 
   const handleLogOut = () => {
@@ -14,7 +15,10 @@ export const Header = () => {
   const logout = (
     <>
       {' | '}
-      <Link to="/auth" onClick={handleLogOut}>
+      <Link
+        to={{ pathname: '/auth', state: { from: location } }}
+        onClick={handleLogOut}
+      >
         LogOut
       </Link>
     </>

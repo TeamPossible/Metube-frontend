@@ -1,3 +1,9 @@
 export const Upload = () => {
-  return <h1>Upload Media Here</h1>;
+  // const bucketUrl = process.env.SUPABASE_BUCKET;
+  return (
+    <form>
+      <legend>Upload</legend>
+      <input type="file"></input>
+    </form>
+  );
 };

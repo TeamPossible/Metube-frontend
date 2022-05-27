@@ -1,3 +1,5 @@
+import { client } from '../services/client';
+
 export const signUp = async ({ username, password, email }) => {
   try {
     const res = await fetch(`${process.env.API_URL}/api/v1/users`, {
@@ -51,4 +53,16 @@ export const signOut = async () => {
   } catch (error) {
     throw error;
   }
+};
+
+export const uploadVideo = (user_id, media) => {
+  const bucketUrl = process.env.SUPABASE_BUCKET;
+
+  const { rows } = client
+    .from('videos')
+    .insert(`${bucketUrl}/${user_id}/${media}`);
+  return rows[0];
+  // ------------------------------------------
+  // NEEDS VERIFICATION C.O.B>
+  // ------------------------------------------
 };
