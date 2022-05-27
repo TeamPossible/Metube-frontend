@@ -17,8 +17,8 @@ import { LoadingProvider } from './context/LoadingProvider';
 export default function App() {
   return (
     <>
-      <Header />
       <AuthProvider>
+        <Header />
         <UserProvider>
           <LoadingProvider>
             <DataProvider>
