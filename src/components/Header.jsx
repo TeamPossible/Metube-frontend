@@ -9,6 +9,7 @@ export const Header = () => {
 
   const handleLogOut = () => {
     window.localStorage.removeItem('user');
+    auth.setUser('');
     signOut();
   };
 
