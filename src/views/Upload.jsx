@@ -4,15 +4,14 @@ import { useAuth } from '../hooks/useAuth';
 
 export const Upload = () => {
   const { user } = useAuth();
-  console.log('USER', user);
   const [media, setMedia] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(media);
     media.map(async (video) => {
       return await uploadVideo(user.id, video);
     });
+    setMedia([]);
   };
 
   return (

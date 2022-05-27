@@ -78,6 +78,5 @@ export const uploadVideo = async (user_id, media) => {
 
 export const getAllMedia = async () => {
   const rows = await client.from('videos').select('video');
-  console.log('MEDIA ROWS', rows.data);
   return rows.data;
 };
