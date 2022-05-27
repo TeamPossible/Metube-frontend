@@ -7,6 +7,12 @@ import { useAuth } from '../hooks/useAuth';
 
 import { signUp, signIn } from '../utils/fetch-utils';
 
+import { useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+
+import { signUp, signIn } from '../utils/fetch-utils';
+
 export const Auth = () => {
   const location = useLocation();
   const history = useHistory();
