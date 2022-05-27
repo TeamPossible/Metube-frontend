@@ -1,4 +1,6 @@
+
 import { client } from '../services/client';
+
 
 export const signUp = async ({ username, password, email }) => {
   try {
@@ -6,6 +8,7 @@ export const signUp = async ({ username, password, email }) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+
       },
       body: JSON.stringify({
         username,
@@ -23,12 +26,15 @@ export const signUp = async ({ username, password, email }) => {
   }
 };
 
+
+
 export const signIn = async ({ password, email }) => {
   try {
     const res = await fetch(`${process.env.API_URL}/api/v1/users/sessions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+
       },
       body: JSON.stringify({
         password,
@@ -49,10 +55,12 @@ export const signOut = async () => {
       method: 'DELETE',
       mode: 'cors',
     });
+
     return res.ok;
   } catch (error) {
     throw error;
   }
+
 };
 
 const videoBucket = async (user_id, media) => {
@@ -80,3 +88,4 @@ export const getAllMedia = async () => {
   const rows = await client.from('videos').select('video');
   return rows.data;
 };
+
