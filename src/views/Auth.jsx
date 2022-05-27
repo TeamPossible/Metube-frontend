@@ -19,7 +19,7 @@ export const Auth = () => {
       const res = await signIn({ password, email });
       console.log(res);
       setUser(res);
-      window.localStorage.setItem('user', res.username);
+      window.localStorage.setItem('user', JSON.stringify(res));
       history.push(location.state.from);
     } catch (error) {
       throw error;

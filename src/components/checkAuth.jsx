@@ -5,7 +5,6 @@ import { useAuth } from '../hooks/useAuth';
 export const CheckAuth = ({ children, ...rest }) => {
   const auth = useAuth();
   const cookie = window.localStorage.getItem('user');
-  console.log('COOKIE', cookie);
   return (
     <Route
       {...rest}

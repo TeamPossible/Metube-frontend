@@ -55,14 +55,11 @@ export const signOut = async () => {
   }
 };
 
-export const uploadVideo = (user_id, media) => {
+export const uploadVideo = async (user_id, media) => {
   const bucketUrl = process.env.SUPABASE_BUCKET;
 
-  const { rows } = client
+  const { rows } = await client
     .from('videos')
-    .insert(`${bucketUrl}/${user_id}/${media}`);
-  return rows[0];
-  // ------------------------------------------
-  // NEEDS VERIFICATION C.O.B>
-  // ------------------------------------------
+    .insert({ video: `${bucketUrl}/${user_id}/${media}`, user_id });
+  return rows;
 };
