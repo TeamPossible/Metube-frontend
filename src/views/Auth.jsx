@@ -30,7 +30,7 @@ export const Auth = () => {
     try {
       const res = await signUp({ username, password, email });
       setUser(res);
-      const cookie = window.localStorage.setItem('user', res.username);
+      window.localStorage.setItem('user', res.username);
       history.push(location.state.from);
     } catch (error) {
       throw error;
