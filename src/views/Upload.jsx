@@ -10,7 +10,7 @@ export const Upload = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(media);
-    const res = await uploadVideo(user.id, media.name);
+    const res = await uploadVideo(user.id, media);
     console.log('UPLOAD', res);
   };
 

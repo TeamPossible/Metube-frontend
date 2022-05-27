@@ -55,11 +55,29 @@ export const signOut = async () => {
   }
 };
 
+const videoBucket = async (user_id, media) => {
+  const response = await client.storage
+    .from('videos')
+    .upload(`${user_id}/${media.name}`, media, {
+      cacheControl: '3600',
+      upsert: false,
+    });
+  response;
+};
+
 export const uploadVideo = async (user_id, media) => {
   const bucketUrl = process.env.SUPABASE_BUCKET;
 
   const { rows } = await client
     .from('videos')
-    .insert({ video: `${bucketUrl}/${user_id}/${media}`, user_id });
+    .insert({ video: `${bucketUrl}/${user_id}/${media.name}`, user_id });
+
+  await videoBucket(user_id, media);
   return rows;
+};
+
+export const getAllMedia = async () => {
+  const rows = await client.from('videos').select('video');
+  console.log('MEDIA ROWS', rows.data);
+  return rows.data;
 };
