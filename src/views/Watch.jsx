@@ -1,8 +1,9 @@
 import { VideoDetail } from '../components/VideoDetail';
-import { useLocation, useParams } from 'react-router-dom';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getById } from '../utils/fetch-utils';
 import { CommentsDisplay } from '../Components/CommentsDisplay';
+import { useAuth } from '../hooks/useAuth';
 
 const videoData = [
   {
@@ -23,18 +24,32 @@ const videoData = [
 ];
 
 export const Watch = () => {
+  const { user } = useAuth();
   const [media, setMedia] = useState(null);
+  const history = useHistory();
   const location = useLocation();
   const { id } = useParams();
-  console.log(id);
+  console.log(user);
+
+  const editRedirect = () => {
+    history.push({
+      pathname: `/upload/edit/${id}`,
+      state: { from: location },
+    });
+  };
+
   useEffect(() => {
     getById(id).then((data) => setMedia(data));
   }, []);
 
+  console.log(media);
   return (
     <>
       {media ? (
         <>
+          {user.id === media.user_id ? (
+            <button onClick={editRedirect}>Edit Video</button>
+          ) : null}
           <VideoDetail video={media} index={'1'} />
           <CommentsDisplay comments={videoData} index={'1'} />
         </>
