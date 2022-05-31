@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect, useState, useMemo } from 'react';
+import { createContext, useEffect, useState, useMemo } from 'react';
 import { getAllMedia } from '../utils/fetch-utils';
 
 export const ListContext = createContext(null);

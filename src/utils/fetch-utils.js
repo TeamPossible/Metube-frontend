@@ -56,7 +56,6 @@ export const signOut = async () => {
 };
 
 const videoBucket = async (user_id, media) => {
-  console.log(user_id);
   const response = await client.storage
     .from('videos')
     .upload(`${user_id}/${media.name}`, media, {
@@ -66,12 +65,14 @@ const videoBucket = async (user_id, media) => {
   response;
 };
 
-export const uploadVideo = async (user_id, media) => {
+export const uploadVideo = async (user_id, media, username) => {
   const bucketUrl = process.env.SUPABASE_BUCKET;
 
-  const { rows } = await client
-    .from('videos')
-    .insert({ video: `${bucketUrl}/${user_id}/${media.name}`, user_id });
+  const { rows } = await client.from('videos').insert({
+    video: `${bucketUrl}/${user_id}/${media.name}`,
+    user_id,
+    username,
+  });
 
   await videoBucket(user_id, media);
   return rows;

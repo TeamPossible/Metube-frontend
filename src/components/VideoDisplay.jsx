@@ -2,7 +2,7 @@ import styles from './VideoDisplay.css';
 import { Link } from 'react-router-dom';
 
 export const VideoDisplay = (video, index) => {
-  console.log(video);
+  console.log('VIDEO', video);
   return (
     <div className={styles['post-container']}>
       <Link to={`/watch/${video.video.id}`}>
@@ -10,6 +10,7 @@ export const VideoDisplay = (video, index) => {
       </Link>
       <div>
         <img src="./anubis.svg" width={'50px'}></img>
+        <span>{video.video?.username}</span>
         <span>Video Title: Test Video</span>
         <p>Video Description: This is a video posted from a test user</p>
       </div>

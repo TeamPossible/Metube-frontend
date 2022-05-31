@@ -15,13 +15,6 @@ const videoData = [
 
 export const Home = () => {
   const { media } = useData();
-  console.log('MEDIA', media);
-  // const [media, setMedia] = useState([]);
-  // useEffect(() => {
-  //   getAllMedia().then((files) => setMedia(files));
-  // }, []);
-
-  // console.log(media);
 
   return (
     <>
