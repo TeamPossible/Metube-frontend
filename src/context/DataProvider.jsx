@@ -1,11 +1,23 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useEffect, useState, useMemo } from 'react';
+import { getAllMedia } from '../utils/fetch-utils';
 
 export const ListContext = createContext(null);
 
 export const DataProvider = ({ children }) => {
-  const [list, dispatch] = useReducer();
+  const [mediaState, setMediaState] = useState([]);
+
+  useEffect(() => {
+    getAllMedia().then((files) => setMediaState(files));
+  }, []);
+
+  const media = useMemo(
+    () => ({
+      mediaState,
+    }),
+    [mediaState]
+  );
 
   return (
-    <ListContext.Provider value={{ list }}>{children}</ListContext.Provider>
+    <ListContext.Provider value={{ media }}>{children}</ListContext.Provider>
   );
 };

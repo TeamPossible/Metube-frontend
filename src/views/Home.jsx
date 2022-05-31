@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { getAllMedia } from '../utils/fetch-utils';
 import { VideoDisplay } from '../components/VideoDisplay';
 import { CommentsDisplay } from '../Components/CommentsDisplay';
+import { useData } from '../hooks/useData';
+import { useAuth } from '../hooks/useAuth';
 
 const videoData = [
   {
@@ -12,18 +14,20 @@ const videoData = [
 ];
 
 export const Home = () => {
-  const [media, setMedia] = useState([]);
-  useEffect(() => {
-    getAllMedia().then((files) => setMedia(files));
-  }, []);
+  const { media } = useData();
+  console.log('MEDIA', media);
+  // const [media, setMedia] = useState([]);
+  // useEffect(() => {
+  //   getAllMedia().then((files) => setMedia(files));
+  // }, []);
 
-  console.log(media);
+  // console.log(media);
 
   return (
     <>
       <h1>A List Of Videos Should Be Displayed</h1>
-      {media?.length > 0 ? (
-        media.map((video, index) => {
+      {media.mediaState?.length > 0 ? (
+        media.mediaState.map((video, index) => {
           return (
             <div key={index}>
               <VideoDisplay video={video} index={index} />
