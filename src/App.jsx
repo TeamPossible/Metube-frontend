@@ -29,7 +29,7 @@ export default function App() {
                 <Route exact path="/auth">
                   <Auth />
                 </Route>
-                <CheckAuth exact path="/watch">
+                <CheckAuth exact path="/watch/:id">
                   <Watch />
                 </CheckAuth>
                 <CheckAuth exact path="/profile/history">

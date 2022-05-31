@@ -78,6 +78,11 @@ export const uploadVideo = async (user_id, media) => {
 };
 
 export const getAllMedia = async () => {
-  const rows = await client.from('videos').select('video');
+  const rows = await client.from('videos').select();
+  return rows.data;
+};
+
+export const getById = async (id) => {
+  const rows = await client.from('videos').select().match({ id }).single();
   return rows.data;
 };

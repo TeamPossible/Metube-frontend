@@ -17,6 +17,8 @@ export const Home = () => {
     getAllMedia().then((files) => setMedia(files));
   }, []);
 
+  console.log(media);
+
   return (
     <>
       <h1>A List Of Videos Should Be Displayed</h1>
@@ -24,7 +26,7 @@ export const Home = () => {
         media.map((video, index) => {
           return (
             <div key={index}>
-              <VideoDisplay video={video} index={index} />;
+              <VideoDisplay video={video} index={index} />
               <CommentsDisplay comments={videoData} index={index} />
             </div>
           );

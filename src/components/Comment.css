@@ -1,3 +1,7 @@
+.comment-container {
+    border: 1px solid blue;
+}
+
 .avatar {
     width: 50px;
 }
