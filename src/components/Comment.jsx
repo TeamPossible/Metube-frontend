@@ -1,9 +1,11 @@
+import styles from './Comment.css';
+
 export const Comment = ({ comment, index }) => {
   return (
     <div key={index}>
-      <img src={comment.avatar}></img>
-      <p>{comment.comment}</p>
+      <img className={styles['avatar']} src={comment.avatar}></img>
       <span>{comment.username}</span>
+      <p>{comment.comment}</p>
     </div>
   );
 };
