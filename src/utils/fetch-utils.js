@@ -56,6 +56,7 @@ export const signOut = async () => {
 };
 
 const videoBucket = async (user_id, media) => {
+  console.log(user_id);
   const response = await client.storage
     .from('videos')
     .upload(`${user_id}/${media.name}`, media, {

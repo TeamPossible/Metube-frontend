@@ -7,6 +7,7 @@ export const Upload = () => {
   const [media, setMedia] = useState([]);
 
   const handleSubmit = async (e) => {
+    console.log(user);
     e.preventDefault();
     media.map(async (video) => {
       return await uploadVideo(user.id, video);

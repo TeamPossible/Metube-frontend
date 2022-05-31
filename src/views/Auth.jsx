@@ -31,7 +31,7 @@ export const Auth = () => {
     try {
       const res = await signUp({ username, password, email });
       setUser(res);
-      window.localStorage.setItem('user', res.username);
+      window.localStorage.setItem('user', JSON.stringify(res));
       history.push(location.state.from);
     } catch (error) {
       throw error;
@@ -101,4 +101,71 @@ export const Auth = () => {
 
   return content;
 };
+
+//   let content;
+
+//   hasAccount
+//     ? (content = (
+//         <>
+//           <form onSubmit={handleSignIn}>
+//             <legend>Sign In</legend>
+//             <input
+//               placeholder="email"
+//               type="text"
+//               name="email"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//             ></input>
+//             <input
+//               placeholder="password"
+//               type="password"
+//               name="password"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//             ></input>
+//             <button>Submit</button>
+//             <button onClick={() => setHasAccount(false)}>
+//               Don't have an account?
+//             </button>
+//           </form>
+//         </>
+//       ))
+//     : (content = (
+//         <>
+//           <form onSubmit={handleSignUp}>
+//             <legend>Sign Up</legend>
+//             <input
+//               placeholder="email"
+//               type="text"
+//               name="email"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//             ></input>
+//             <input
+//               placeholder="password"
+//               type="password"
+//               name="password"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//             ></input>
+//             <input
+//               placeholder="username"
+//               type="username"
+//               name="username"
+//               value={username}
+//               onChange={(e) => setUsername(e.target.value)}
+//             ></input>
+//             <button>Submit</button>
+//             <button onClick={() => setHasAccount(true)}>
+//               Already have an account?
+//             </button>
+//           </form>
+//         </>
+//       ));
+
+//   return (
+//     content
+//   );
+
+// };
 // This line exists for no reason
