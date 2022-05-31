@@ -1,4 +1,33 @@
 .post-container {
     border: 1px solid black;
     width: fit-content;
+    height: 260px;
+    overflow: scroll;
 }
+
+.video-description {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 35px;
+}
+
+.video-title {
+    margin: 5px;
+    display: contents;
+}
+
+.avatar-title-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    margin: 0px 0px 5px 0px;
+    padding: 5px;
+}
+
+

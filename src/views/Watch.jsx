@@ -29,7 +29,6 @@ export const Watch = () => {
   const history = useHistory();
   const location = useLocation();
   const { id } = useParams();
-  console.log(user);
 
   const editRedirect = () => {
     history.push({
@@ -42,7 +41,6 @@ export const Watch = () => {
     getById(id).then((data) => setMedia(data));
   }, []);
 
-  console.log(media);
   return (
     <>
       {media ? (

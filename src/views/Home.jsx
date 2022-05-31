@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react';
-import { getAllMedia } from '../utils/fetch-utils';
 import { VideoDisplay } from '../components/VideoDisplay';
 import { CommentsDisplay } from '../Components/CommentsDisplay';
 import { useData } from '../hooks/useData';
-import { useAuth } from '../hooks/useAuth';
-
+import styles from './Home.css';
 const videoData = [
   {
     username: 'FakeUserData',
@@ -17,20 +14,18 @@ export const Home = () => {
   const { media } = useData();
 
   return (
-    <>
-      <h1>A List Of Videos Should Be Displayed</h1>
+    <div className={styles['home-container']}>
       {media.mediaState?.length > 0 ? (
         media.mediaState.map((video, index) => {
           return (
-            <div key={index}>
-              <VideoDisplay video={video} index={index} />
-              <CommentsDisplay comments={videoData} index={index} />
+            <div key={index} className={styles['media-containers']}>
+              <VideoDisplay video={video} />
             </div>
           );
         })
       ) : (
         <h1>No Media To Display</h1>
       )}
-    </>
+    </div>
   );
 };

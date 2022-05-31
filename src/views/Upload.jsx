@@ -29,18 +29,18 @@ export const Upload = () => {
         onChange={(e) => setMedia(Array.from(e.target.files))}
       ></input>
       <br></br>
-      <label htmlFor="description">Video Description</label>
-      <input
-        type="text"
-        name="description"
-        onChange={(e) => setDescription(e.target.value)}
-      ></input>
-      <br></br>
       <label htmlFor="title">Video Title</label>
       <input
         type="text"
         name="title"
         onChange={(e) => setTitle(e.target.value)}
+      ></input>
+      <br></br>
+      <label htmlFor="description">Video Description</label>
+      <input
+        type="text"
+        name="description"
+        onChange={(e) => setDescription(e.target.value)}
       ></input>
       <br></br>
       <button>Upload Video</button>

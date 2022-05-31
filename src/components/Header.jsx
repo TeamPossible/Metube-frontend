@@ -27,11 +27,13 @@ export const Header = () => {
   );
   return (
     <>
-      <Link to="/">Home</Link>
+      <Link to="/">
+        <img src="./metubeLogo.png" width={'100px'}></img>
+      </Link>
       {' | '}
-      <Link to="/watch">Detail</Link>
-      {' | '}
-      <Link to="/upload">Upload</Link>
+      <Link to="/upload">
+        <img src="./uploadButton.png" width={'35px'}></img>
+      </Link>
       {' | '}
       {auth.user ? (
         <Link to={`/profile/${auth.user.id}/edit`}>Edit Profile</Link>

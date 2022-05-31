@@ -1,14 +1,16 @@
 import styles from './VideoDisplay.css';
 
-export const VideoDetail = (video, index) => {
-  console.log(video);
+export const VideoDetail = ({ video }) => {
   return (
     <div className={styles['media-container']}>
-      <video key={index} src={video.video.video} controls />
+      <video src={video.video} controls />
       <div>
         <img src="../anubis.svg" width={'50px'}></img>
+        <span>{video.username}</span>
         <span>Video Title: Test Video</span>
-        <p>Video Description: This is a video posted from a test user</p>
+        <p className={styles['video-description']}>
+          Video Description: This is a video posted from a test user
+        </p>
       </div>
     </div>
   );

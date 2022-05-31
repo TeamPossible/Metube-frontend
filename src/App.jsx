@@ -7,11 +7,11 @@ import { Header } from './components/Header';
 import { EditMedia } from './views/EditUpload';
 import { Route, Switch } from 'react-router-dom';
 import { EditProfile } from './views/EditProfile';
+import { CheckAuth } from './components/checkAuth';
 import { WatchHistory } from './views/WatchHistory';
 import { DataProvider } from './context/DataProvider';
 import { UserProvider } from './context/UserProvider';
 import { AuthProvider } from './context/AuthProvider';
-import { CheckAuth } from './components/checkAuth';
 import { LoadingProvider } from './context/LoadingProvider';
 
 export default function App() {

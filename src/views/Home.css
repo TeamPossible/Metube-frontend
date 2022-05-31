@@ -1,0 +1,11 @@
+.home-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgb(243, 243, 243);
+}
+
+.media-containers {
+    width: 200px;
+    margin: 5px;
+}

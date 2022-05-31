@@ -1,9 +1,9 @@
 import { Comment } from './Comment';
 
-export const CommentsDisplay = ({ comments, index }) => {
+export const CommentsDisplay = ({ comments }) => {
   return (
-    <div key={index}>
-      {comments.map((comment) => {
+    <div>
+      {comments.map((comment, index) => {
         return <Comment key={index} comment={comment} index={index} />;
       })}
     </div>
