@@ -12,6 +12,7 @@ const videoData = [
 
 export const Home = () => {
   const { media } = useData();
+  // console.log('MEDIA', media);
 
   return (
     <div className={styles['home-container']}>

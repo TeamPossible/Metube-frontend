@@ -4,12 +4,12 @@ import { useAuth } from '../hooks/useAuth';
 
 export const CheckAuth = ({ children, ...rest }) => {
   const auth = useAuth();
-  const cookie = window.localStorage.getItem('user');
+  // const cookie = window.localStorage.getItem('user');
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        auth.user || cookie ? (
+        auth.user ? (
           children
         ) : (
           <Redirect

@@ -20,38 +20,37 @@ export default function App() {
     <div className={styles.app}>
       <AuthProvider>
         <Header />
-        <UserProvider>
-          <LoadingProvider>
-            <DataProvider>
-              <Switch>
-                <Route exact path="/">
-                  <Home />
-                </Route>
-                <Route exact path="/auth">
-                  <Auth />
-                </Route>
-                <CheckAuth exact path="/watch/:id">
-                  <Watch />
-                </CheckAuth>
-                <CheckAuth exact path="/profile/history">
-                  <WatchHistory />
-                </CheckAuth>
-                <Route exact path="/profile/:id">
-                  <Profile />
-                </Route>
-                <Route exact path="/profile/:id/edit">
-                  <EditProfile />
-                </Route>
-                <CheckAuth exact path="/upload">
-                  <Upload />
-                </CheckAuth>
-                <Route exact path="/upload/edit/:id">
-                  <EditMedia />
-                </Route>
-              </Switch>
-            </DataProvider>
-          </LoadingProvider>
-        </UserProvider>
+
+        <LoadingProvider>
+          <DataProvider>
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/auth">
+                <Auth />
+              </Route>
+              <CheckAuth exact path="/watch/:id">
+                <Watch />
+              </CheckAuth>
+              <CheckAuth exact path="/profile/history">
+                <WatchHistory />
+              </CheckAuth>
+              <Route exact path="/profile/:id">
+                <Profile />
+              </Route>
+              <Route exact path="/profile/:id/edit">
+                <EditProfile />
+              </Route>
+              <CheckAuth exact path="/upload">
+                <Upload />
+              </CheckAuth>
+              <Route exact path="/upload/edit/:id">
+                <EditMedia />
+              </Route>
+            </Switch>
+          </DataProvider>
+        </LoadingProvider>
       </AuthProvider>
     </div>
   );

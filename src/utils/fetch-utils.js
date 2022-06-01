@@ -65,22 +65,58 @@ const videoBucket = async (user_id, media) => {
   response;
 };
 
-export const uploadVideo = async (user_id, media, username) => {
+export const uploadVideo = async (user_id, title, description, media) => {
   const bucketUrl = process.env.SUPABASE_BUCKET;
 
-  const { rows } = await client.from('videos').insert({
-    video: `${bucketUrl}/${user_id}/${media.name}`,
-    user_id,
-    username,
-  });
+  // const { rows } = await client.from('videos').insert({
+  //   video: `${bucketUrl}/${user_id}/${media.name}`,
+  //   user_id,
+  //   username,
+  // });
 
-  await videoBucket(user_id, media);
-  return rows;
+  try {
+    const res = await fetch(`${process.env.API_URL}/api/v1/media`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_id,
+        title,
+        description,
+        video_url: `${bucketUrl}/${user_id}/${media.name}`,
+      }),
+      mode: 'cors',
+      credentials: 'include',
+    });
+    if (!res.ok) throw new Error('Invalid login credentials');
+
+    await videoBucket(user_id, media);
+
+    return res.json();
+  } catch (error) {
+    throw error;
+  }
+
+  // return rows;
 };
 
 export const getAllMedia = async () => {
-  const rows = await client.from('videos').select();
-  return rows.data;
+  try {
+    const res = await fetch(`${process.env.API_URL}/api/v1/media`, {
+      method: 'Get',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors',
+      credentials: 'include',
+    });
+    if (!res.ok) throw new Error('Invalid login credentials');
+    console.log('RESPONSE', res);
+    return res.json();
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const getById = async (id) => {
