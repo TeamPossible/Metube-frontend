@@ -1,5 +1,4 @@
 .post-container {
-    border: 1px solid black;
     width: fit-content;
     height: 260px;
     overflow: scroll;
@@ -21,6 +20,7 @@
 }
 
 .avatar-title-block {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -28,6 +28,11 @@
     align-items: center;
     margin: 0px 0px 5px 0px;
     padding: 5px;
+}
+
+.detail-title {
+    position: absolute;
+    left: 50px;
 }
 
 

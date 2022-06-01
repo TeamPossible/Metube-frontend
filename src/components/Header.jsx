@@ -28,11 +28,11 @@ export const Header = () => {
   return (
     <>
       <Link to="/">
-        <img src="./metubeLogo.png" width={'100px'}></img>
+        <img src="../MeTube-nobg.png" width={'100px'}></img>
       </Link>
       {' | '}
       <Link to="/upload">
-        <img src="./uploadButton.png" width={'35px'}></img>
+        <img src="../uploadButton.png" width={'35px'}></img>
       </Link>
       {' | '}
       {auth.user ? (

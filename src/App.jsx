@@ -1,3 +1,4 @@
+import styles from './App.css';
 import { Home } from './views/Home';
 import { Auth } from './views/Auth';
 import { Watch } from './views/Watch';
@@ -16,7 +17,7 @@ import { LoadingProvider } from './context/LoadingProvider';
 
 export default function App() {
   return (
-    <>
+    <div className={styles.app}>
       <AuthProvider>
         <Header />
         <UserProvider>
@@ -52,6 +53,6 @@ export default function App() {
           </LoadingProvider>
         </UserProvider>
       </AuthProvider>
-    </>
+    </div>
   );
 }
