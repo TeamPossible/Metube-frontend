@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import { uploadVideo } from '../utils/fetch-utils';
 import { useAuth } from '../hooks/useAuth';
+import { useData } from '../hooks/useData';
+import { useLocation, useHistory } from 'react-router-dom';
 
 export const Upload = () => {
+  const location = useLocation();
+  const history = useHistory();
   const { user } = useAuth();
+  const { handleAdd } = useData();
   const [media, setMedia] = useState([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -12,7 +17,11 @@ export const Upload = () => {
     console.log(user);
     e.preventDefault();
     media.map(async (video) => {
-      return await uploadVideo(user.id, title, description, video);
+      const upload = await uploadVideo(user.id, title, description, video);
+      console.log('UPLOAD RESPONSE', upload);
+      await handleAdd(upload);
+      history.push(`/watch/${upload.video_id}`);
+      return upload;
     });
     setMedia([]);
   };

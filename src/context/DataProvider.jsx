@@ -77,8 +77,8 @@ export const DataProvider = ({ children }) => {
     dispatch({ type: 'DELETE', payload: { id } });
   };
 
-  const handleAddReply = (comment) => {
-    dispatch({ type: 'ADDComment', payload: { comment } });
+  const handleAddComment = (comment) => {
+    dispatch({ type: 'ADDCOMMENT', payload: { comment } });
   };
 
   return (
@@ -89,7 +89,7 @@ export const DataProvider = ({ children }) => {
         handleAdd,
         handleEdit,
         handleDelete,
-        handleAddReply,
+        handleAddComment,
       }}
     >
       {children}
