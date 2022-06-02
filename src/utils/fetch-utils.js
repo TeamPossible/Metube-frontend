@@ -124,14 +124,17 @@ export const getById = async (id) => {
   // const rows = await client.from('videos').select().match({ id }).single();
   // return rows.data;
   try {
-    const res = await fetch(`${process.env.API_URL}/api/v1/comment/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      mode: 'cors',
-      credentials: 'include',
-    });
+    const res = await fetch(
+      `${process.env.API_URL}/api/v1/media/videos/${id}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        mode: 'cors',
+        credentials: 'include',
+      }
+    );
     if (!res.ok) throw new Error('Invalid login credentials');
     console.log('RESPONSE', res);
     return res.json();

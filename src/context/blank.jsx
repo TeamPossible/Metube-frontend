@@ -1,29 +1,4 @@
-// import { createContext, useEffect, useState, useMemo } from 'react';
-// import { getAllMedia } from '../utils/fetch-utils';
-
-// export const ListContext = createContext(null);
-
-// export const DataProvider = ({ children }) => {
-//   const [mediaState, setMediaState] = useState([]);
-
-//   useEffect(() => {
-//     getAllMedia().then((files) => setMediaState(files));
-//     console.log('USE EFFECT RAN');
-//   }, []);
-
-//   const media = useMemo(
-//     () => ({
-//       mediaState,
-//     }),
-//     [mediaState]
-//   );
-//   console.log('MEDIASTATE', mediaState);
-//   return (
-//     <ListContext.Provider value={{ media }}>{children}</ListContext.Provider>
-//   );
-// };
-import { createContext, useReducer, useEffect } from 'react';
-import { getAllMedia } from '../utils/fetch-utils';
+import { createContext, useReducer, useState } from 'react';
 
 export const ChatContext = createContext(null);
 
@@ -34,7 +9,6 @@ const mediaReducer = (state, action) => {
     case 'DELETE':
       return state.filter((item) => item.id != action.payload.id);
     case 'RESET':
-      console.log(action.payload.videos);
       return action.payload.videos;
     case 'EDIT':
       return state.map((currMessage) => {
@@ -55,11 +29,6 @@ const mediaReducer = (state, action) => {
 
 export const DataProvider = ({ children }) => {
   const [videos, dispatch] = useReducer(mediaReducer);
-
-  useEffect(() => {
-    getAllMedia().then((files) => handleReset(files));
-    console.log('USE EFFECT RAN');
-  }, []);
 
   const handleReset = (videos) => {
     dispatch({ type: 'RESET', payload: { videos } });

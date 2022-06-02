@@ -5,7 +5,7 @@ export const VideoDisplay = ({ video }) => {
   console.log('GETTING CLOSER', video);
   return (
     <div className={styles['post-container']}>
-      <Link to={`/watch/${video.id}`}>
+      <Link to={`/watch/${video.video_id}`}>
         <video src={video.video_url} controls width="200px" />
       </Link>
       <div>

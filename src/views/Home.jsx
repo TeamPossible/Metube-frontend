@@ -5,14 +5,14 @@ import styles from './Home.css';
 import { useEffect } from 'react';
 
 export const Home = () => {
-  const { media } = useData();
+  const { videos } = useData();
 
-  console.log('MEDIA', media);
+  console.log('MEDIA', videos);
 
   return (
     <div className={styles['home-container']}>
-      {media.mediaState?.length > 0 ? (
-        media.mediaState.map((video, index) => {
+      {videos?.length > 0 ? (
+        videos.map((video, index) => {
           return (
             <div key={index} className={styles['media-containers']}>
               <VideoDisplay video={video} />
