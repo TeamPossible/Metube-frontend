@@ -2,17 +2,12 @@ import { VideoDisplay } from '../components/VideoDisplay';
 import { CommentsDisplay } from '../Components/CommentsDisplay';
 import { useData } from '../hooks/useData';
 import styles from './Home.css';
-const videoData = [
-  {
-    username: 'FakeUserData',
-    avatar: './thanosPose.jpeg',
-    comment: 'What an awesome video',
-  },
-];
+import { useEffect } from 'react';
 
 export const Home = () => {
   const { media } = useData();
-  // console.log('MEDIA', media);
+
+  console.log('MEDIA', media);
 
   return (
     <div className={styles['home-container']}>

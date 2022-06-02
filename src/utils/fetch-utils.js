@@ -103,8 +103,29 @@ export const uploadVideo = async (user_id, title, description, media) => {
 
 export const getAllMedia = async () => {
   try {
-    const res = await fetch(`${process.env.API_URL}/api/v1/media`, {
-      method: 'Get',
+    const res = await fetch(`${process.env.API_URL}/api/v1/media/videos`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors',
+      credentials: 'include',
+    });
+    if (!res.ok) throw new Error('Something went wrong with the fetch request');
+    console.log(res);
+    const response = await res.json();
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getById = async (id) => {
+  // const rows = await client.from('videos').select().match({ id }).single();
+  // return rows.data;
+  try {
+    const res = await fetch(`${process.env.API_URL}/api/v1/comment/${id}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -117,9 +138,4 @@ export const getAllMedia = async () => {
   } catch (error) {
     throw error;
   }
-};
-
-export const getById = async (id) => {
-  const rows = await client.from('videos').select().match({ id }).single();
-  return rows.data;
 };

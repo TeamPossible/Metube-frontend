@@ -12,15 +12,17 @@ export function AuthProvider({ children }) {
     setLoading(true);
     try {
       window.localStorage.getItem('user')
-        ? setUser(JSON.parse(window.localStorage.getItem('user')).profile)
+        ? setUser(JSON.parse(window.localStorage.getItem('user')))
         : setUser({ profile: {} });
       setLoading(false);
     } catch (error) {
       throw new Error(error);
     }
   }, []);
-  if (loading) return null;
-  return (
+
+  return loading ? (
+    <h1>Loading</h1>
+  ) : (
     <authContext.Provider value={{ user, setUser }}>
       {children}
     </authContext.Provider>

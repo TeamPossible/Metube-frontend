@@ -4,7 +4,6 @@ import { useAuth } from '../hooks/useAuth';
 
 export const Upload = () => {
   const { user } = useAuth();
-  console.log('User In Upload', user);
   const [media, setMedia] = useState([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');

@@ -8,6 +8,7 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     getAllMedia().then((files) => setMediaState(files));
+    console.log('USE EFFECT RAN');
   }, []);
 
   const media = useMemo(
@@ -16,7 +17,7 @@ export const DataProvider = ({ children }) => {
     }),
     [mediaState]
   );
-
+  console.log('MEDIASTATE', mediaState);
   return (
     <ListContext.Provider value={{ media }}>{children}</ListContext.Provider>
   );
