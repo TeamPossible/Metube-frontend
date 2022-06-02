@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { ListContext } from '../context/DataProvider';
+import { ChatContext } from '../context/DataProvider';
 
 export const useData = () => {
-  const context = useContext(ListContext);
+  const context = useContext(ChatContext);
 
   if (context === null) {
     throw new Error('Context Must Come From Provider');

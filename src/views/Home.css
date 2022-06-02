@@ -1,0 +1,10 @@
+.home-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.media-containers {
+    width: 200px;
+    margin: 5px;
+}

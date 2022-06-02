@@ -5,15 +5,24 @@ import { createContext, useState } from 'react';
 export const authContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const userItem = window.localStorage.getItem('user');
-    console.log(JSON.parse(userItem).profile);
-    setUser(JSON.parse(userItem).profile);
+    setLoading(true);
+    try {
+      window.localStorage.getItem('user')
+        ? setUser(JSON.parse(window.localStorage.getItem('user')))
+        : setUser({ profile: {} });
+      setLoading(false);
+    } catch (error) {
+      throw new Error(error);
+    }
   }, []);
 
-  return (
+  return loading ? (
+    <h1>Loading</h1>
+  ) : (
     <authContext.Provider value={{ user, setUser }}>
       {children}
     </authContext.Provider>
