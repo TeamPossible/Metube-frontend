@@ -121,6 +121,7 @@ export const getAllMedia = async () => {
 };
 
 export const getById = async (id) => {
+  console.log('ID IN FETCH', id);
   // const rows = await client.from('videos').select().match({ id }).single();
   // return rows.data;
   try {
@@ -136,8 +137,9 @@ export const getById = async (id) => {
       }
     );
     if (!res.ok) throw new Error('Invalid login credentials');
-    console.log('RESPONSE', res);
-    return res.json();
+    const response = await res.json();
+    console.log('RESPONSE', response);
+    return response;
   } catch (error) {
     throw error;
   }

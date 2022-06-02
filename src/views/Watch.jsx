@@ -38,7 +38,9 @@ export const Watch = () => {
   };
 
   useEffect(() => {
-    getById(id).then((data) => setMedia(data));
+    getById(id)
+      .then((data) => setMedia(data))
+      .finally((media) => console.log('MEDIA DETAIL', media));
   }, []);
 
   return (
