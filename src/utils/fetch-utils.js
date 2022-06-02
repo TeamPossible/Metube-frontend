@@ -68,12 +68,6 @@ const videoBucket = async (user_id, media) => {
 export const uploadVideo = async (user_id, title, description, media) => {
   const bucketUrl = process.env.SUPABASE_BUCKET;
 
-  // const { rows } = await client.from('videos').insert({
-  //   video: `${bucketUrl}/${user_id}/${media.name}`,
-  //   user_id,
-  //   username,
-  // });
-
   try {
     const res = await fetch(`${process.env.API_URL}/api/v1/media`, {
       method: 'POST',
@@ -97,8 +91,6 @@ export const uploadVideo = async (user_id, title, description, media) => {
   } catch (error) {
     throw error;
   }
-
-  // return rows;
 };
 
 export const getAllMedia = async () => {
@@ -122,8 +114,7 @@ export const getAllMedia = async () => {
 
 export const getById = async (id) => {
   console.log('ID IN FETCH', id);
-  // const rows = await client.from('videos').select().match({ id }).single();
-  // return rows.data;
+
   try {
     const res = await fetch(
       `${process.env.API_URL}/api/v1/media/videos/${id}`,
@@ -139,6 +130,24 @@ export const getById = async (id) => {
     if (!res.ok) throw new Error('Invalid login credentials');
     const response = await res.json();
     console.log('RESPONSE', response);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getCommentsById = async (id) => {
+  try {
+    const res = await fetch(`${process.env.API_URL}/api/v1/comment/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors',
+    });
+    if (!res.ok) console.log('ERROR RESPONSE', res);
+    const response = await res.json();
+    console.log('COMMENT RESPONSE', response);
     return response;
   } catch (error) {
     throw error;

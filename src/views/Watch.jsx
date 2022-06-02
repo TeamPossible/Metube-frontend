@@ -1,31 +1,14 @@
 import { VideoDetail } from '../components/VideoDetail';
 import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getById } from '../utils/fetch-utils';
+import { getById, getCommentsById } from '../utils/fetch-utils';
 import { CommentsDisplay } from '../Components/CommentsDisplay';
 import { useAuth } from '../hooks/useAuth';
-
-const videoData = [
-  {
-    username: 'FakeUserData',
-    avatar: '../thanosPose.jpeg',
-    comment: 'What an awesome video',
-  },
-  {
-    username: 'FakeUserData1',
-    avatar: '../thanosPose.jpeg',
-    comment: 'Meh, its pretty ok',
-  },
-  {
-    username: 'FakeUserData2',
-    avatar: '../thanosPose.jpeg',
-    comment: 'I think it was good too',
-  },
-];
 
 export const Watch = () => {
   const { user } = useAuth();
   const [media, setMedia] = useState(null);
+  const [comments, setComments] = useState([]);
   const history = useHistory();
   const location = useLocation();
   const { id } = useParams();
@@ -43,6 +26,16 @@ export const Watch = () => {
       .finally((media) => console.log('MEDIA DETAIL', media));
   }, []);
 
+  useEffect(() => {
+    try {
+      getCommentsById(id)
+        .then((data) => setComments(data))
+        .finally((comments) => console.log('COMMENT DETAIL', comments));
+    } catch (error) {
+      throw new Error('No comments for this video');
+    }
+  }, []);
+
   return (
     <>
       {media ? (
@@ -51,7 +44,7 @@ export const Watch = () => {
             <button onClick={editRedirect}>Edit Video</button>
           ) : null}
           <VideoDetail video={media} index={'1'} />
-          <CommentsDisplay comments={videoData} index={'1'} />
+          <CommentsDisplay comments={comments} index={'1'} />
         </>
       ) : (
         <h1>Just a moment while we fetch your video</h1>

@@ -77,10 +77,6 @@ export const DataProvider = ({ children }) => {
     dispatch({ type: 'DELETE', payload: { id } });
   };
 
-  const handleAddComment = (comment) => {
-    dispatch({ type: 'ADDCOMMENT', payload: { comment } });
-  };
-
   return (
     <ChatContext.Provider
       value={{
@@ -89,7 +85,6 @@ export const DataProvider = ({ children }) => {
         handleAdd,
         handleEdit,
         handleDelete,
-        handleAddComment,
       }}
     >
       {children}
