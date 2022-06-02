@@ -1,5 +1,4 @@
 import { VideoDisplay } from '../components/VideoDisplay';
-import { CommentsDisplay } from '../Components/CommentsDisplay';
 import { useData } from '../hooks/useData';
 import styles from './Home.css';
 import { useEffect } from 'react';
