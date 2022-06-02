@@ -16,7 +16,7 @@ jobs:
     - run: npm test
       env:
         CI: true
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+        DATABASE_URL: https://metube-final-project.herokuapp.com/
         SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
         SUPABASE_BUCKET: ${{ secrets.SUPABASE_BUCKET }}
