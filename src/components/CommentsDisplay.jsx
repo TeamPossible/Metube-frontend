@@ -1,8 +1,10 @@
-import { Comment } from './Comment';
 import { useState } from 'react';
+import { Comment } from './Comment';
 import styles from './CommentDisplay.css';
+// import { useData } from '../hooks/useData';
 
 export const CommentsDisplay = ({ comments }) => {
+  // const { loading } = useData();
   const [newComment, setNewComment] = useState('');
   const [isNull, setIsNull] = useState(true);
 
@@ -29,7 +31,9 @@ export const CommentsDisplay = ({ comments }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-
+  // if (loading) {
+  //   return <p>loading...</p>;
+  // }
   return (
     <div>
       <form>

@@ -4,10 +4,13 @@ import { useEffect, useState } from 'react';
 import { getById, getCommentsById } from '../utils/fetch-utils';
 import { CommentsDisplay } from '../Components/CommentsDisplay';
 import { useAuth } from '../hooks/useAuth';
+// import { useData } from '../hooks/useData';
 
 export const Watch = () => {
   const { user } = useAuth();
+  // const { loading } = useData();
   const [media, setMedia] = useState(null);
+
   const [comments, setComments] = useState([]);
   const history = useHistory();
   const location = useLocation();
@@ -35,7 +38,9 @@ export const Watch = () => {
       throw new Error('No comments for this video');
     }
   }, []);
-
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
   return (
     <>
       {media ? (

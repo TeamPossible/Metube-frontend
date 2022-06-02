@@ -153,3 +153,27 @@ export const getCommentsById = async (id) => {
     throw error;
   }
 };
+
+export const addComment = async (user_id, comment, video_id) => {
+  try {
+    const res = await fetch(`${process.env.API_URL}/api/v1/comment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_id,
+        comment,
+        video_id,
+      }),
+      mode: 'cors',
+      credentials: 'include',
+    });
+    if (!res.ok) console.log('ERROR RESPONSE', res);
+    const response = await res.json();
+    console.log('COMMENT RESPONSE', response);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
