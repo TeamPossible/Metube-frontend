@@ -147,6 +147,9 @@ export const getCommentsById = async (id) => {
     });
     if (!res.ok) console.log('ERROR RESPONSE', res);
     const response = await res.json();
+    if (response === null) {
+      return [];
+    }
     console.log('COMMENT RESPONSE', response);
     return response;
   } catch (error) {
@@ -154,7 +157,7 @@ export const getCommentsById = async (id) => {
   }
 };
 
-export const addComment = async (user_id, comment, video_id) => {
+export const addComment = async (user_id, comment, video_id, username) => {
   try {
     const res = await fetch(`${process.env.API_URL}/api/v1/comment`, {
       method: 'POST',
@@ -165,6 +168,7 @@ export const addComment = async (user_id, comment, video_id) => {
         user_id,
         comment,
         video_id,
+        username,
       }),
       mode: 'cors',
       credentials: 'include',

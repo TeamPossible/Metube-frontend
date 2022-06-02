@@ -13,7 +13,7 @@ const mediaReducer = (state, action) => {
       console.log(action.payload.videos);
       return action.payload.videos;
     case 'EDIT':
-      return state.map((currMessage) => {
+      return state.map((currVideo) => {
         if (currVideo.id === action.payload.video.id) {
           const { video } = action.payload.video;
           return { ...currVideo, video };
@@ -21,8 +21,20 @@ const mediaReducer = (state, action) => {
         return currVideo;
       });
     case 'ADDCOMMENT':
-      const addNewReply = [...state.replies, action.payload.reply];
-      return { ...state, replies: addNewReply };
+      // const addNewReply = [...state.replies, action.payload.reply];
+
+      return state.map((currVideo) => {
+        console.log(currVideo, action.payload.comment, 'REDUCER ARGS');
+        if (currVideo.video_id === action.payload.video.video_id) {
+          const { comment } = action.payload.comment;
+          console.log('VIDEO IN REDUCER', comment);
+
+          return { ...currVideo, comments: action.payload.comment };
+        }
+        return currVideo;
+      });
+
+    // return { ...state, replies: addNewReply };
 
     default:
       break;
@@ -53,6 +65,10 @@ export const DataProvider = ({ children }) => {
     dispatch({ type: 'DELETE', payload: { id } });
   };
 
+  const handleAddComment = (video, comment) => {
+    dispatch({ type: 'ADDCOMMENT', payload: { video, comment } });
+  };
+
   return (
     <ChatContext.Provider
       value={{
@@ -61,6 +77,7 @@ export const DataProvider = ({ children }) => {
         handleAdd,
         handleEdit,
         handleDelete,
+        handleAddComment,
       }}
     >
       {children}

@@ -1,16 +1,24 @@
 import { useState } from 'react';
+import { addComment } from '../utils/fetch-utils';
 import { Comment } from './Comment';
 import styles from './CommentDisplay.css';
-// import { useData } from '../hooks/useData';
+import { useData } from '../hooks/useData';
 
-export const CommentsDisplay = ({ comments }) => {
-  // const { loading } = useData();
+export const CommentsDisplay = ({
+  comments,
+  user_id,
+  video,
+  username,
+  fetch,
+}) => {
+  const { handleAddComment } = useData();
   const [newComment, setNewComment] = useState('');
-  const [isNull, setIsNull] = useState(true);
+  const [isNull, setIsNull] = useState(false);
 
-  if (comments !== null) {
-    setIsNull(false);
+  if (comments === null) {
+    setIsNull(true);
   }
+  console.log(video, 'ID !!!');
 
   const tryMap = () => {
     try {
@@ -28,15 +36,21 @@ export const CommentsDisplay = ({ comments }) => {
   let content;
   isNull ? (content = <p>No comments to display</p>) : (content = tryMap());
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const commentUpload = await addComment(
+      user_id,
+      newComment,
+      video.video_id,
+      username
+    );
+    console.log(commentUpload);
+    await fetch();
   };
-  // if (loading) {
-  //   return <p>loading...</p>;
-  // }
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           className={styles['comment-input']}
           onChange={(e) => setNewComment(e.target.value)}

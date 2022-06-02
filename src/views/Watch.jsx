@@ -4,11 +4,10 @@ import { useEffect, useState } from 'react';
 import { getById, getCommentsById } from '../utils/fetch-utils';
 import { CommentsDisplay } from '../Components/CommentsDisplay';
 import { useAuth } from '../hooks/useAuth';
-// import { useData } from '../hooks/useData';
 
 export const Watch = () => {
   const { user } = useAuth();
-  // const { loading } = useData();
+  console.log(user);
   const [media, setMedia] = useState(null);
 
   const [comments, setComments] = useState([]);
@@ -22,25 +21,22 @@ export const Watch = () => {
       state: { from: location },
     });
   };
+  const refetchComments = async () => {
+    return getCommentsById(id).then((data) => setComments(data));
+  };
 
   useEffect(() => {
-    getById(id)
-      .then((data) => setMedia(data))
-      .finally((media) => console.log('MEDIA DETAIL', media));
+    getById(id).then((data) => setMedia(data));
   }, []);
 
   useEffect(() => {
     try {
-      getCommentsById(id)
-        .then((data) => setComments(data))
-        .finally((comments) => console.log('COMMENT DETAIL', comments));
+      refetchComments();
     } catch (error) {
       throw new Error('No comments for this video');
     }
   }, []);
-  // if (loading) {
-  //   return <p>Loading...</p>;
-  // }
+  console.log(comments, 'COMMENTS BEFORE RENDER');
   return (
     <>
       {media ? (
@@ -49,7 +45,13 @@ export const Watch = () => {
             <button onClick={editRedirect}>Edit Video</button>
           ) : null}
           <VideoDetail video={media} index={'1'} />
-          <CommentsDisplay comments={comments} index={'1'} />
+          <CommentsDisplay
+            comments={comments}
+            user_id={user.id}
+            video={media}
+            username={user.username}
+            fetch={refetchComments}
+          />
         </>
       ) : (
         <h1>Just a moment while we fetch your video</h1>
