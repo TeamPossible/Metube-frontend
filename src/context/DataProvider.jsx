@@ -10,7 +10,6 @@ const mediaReducer = (state, action) => {
     case 'DELETE':
       return state.filter((item) => item.id != action.payload.id);
     case 'RESET':
-      console.log(action.payload.videos);
       return action.payload.videos;
     case 'EDIT':
       return state.map((currVideo) => {
@@ -24,10 +23,8 @@ const mediaReducer = (state, action) => {
       // const addNewReply = [...state.replies, action.payload.reply];
 
       return state.map((currVideo) => {
-        console.log(currVideo, action.payload.comment, 'REDUCER ARGS');
         if (currVideo.video_id === action.payload.video.video_id) {
           const { comment } = action.payload.comment;
-          console.log('VIDEO IN REDUCER', comment);
 
           return { ...currVideo, comments: action.payload.comment };
         }
@@ -46,7 +43,6 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     getAllMedia().then((files) => handleReset(files));
-    console.log('USE EFFECT RAN');
   }, []);
 
   const handleReset = (videos) => {

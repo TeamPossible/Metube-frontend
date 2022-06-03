@@ -1,0 +1,10 @@
+html, body, #root, .App {
+    height: 100%;
+   
+  }
+  
+  body {
+    background-image: url('./assets/background.jpg') ;
+    background-size: cover;
+    background-position: center;
+  }

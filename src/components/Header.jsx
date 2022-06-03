@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { signOut } from '../utils/fetch-utils';
 import { useLocation } from 'react-router-dom';
+import styles from '../App.css';
 
 export const Header = () => {
   const location = useLocation();
   const auth = useAuth();
-  console.log('USER', auth);
 
   const handleLogOut = () => {
     window.localStorage.removeItem('user');
@@ -26,23 +26,24 @@ export const Header = () => {
     </>
   );
   return (
-    <>
+    <div className={styles['header-bar']}>
       <Link to="/">
         <img src="../MeTube-nobg.png" width={'100px'}></img>
       </Link>
       {' | '}
+      
       <Link to="/upload">
         <img src="../uploadButton.png" width={'35px'}></img>
       </Link>
+      {' | '}
+      <Link to="/about-us">About Us</Link>
       {' | '}
       {auth.user ? (
         <Link to={`/profile/${auth.user.id}/edit`}>Edit Profile</Link>
       ) : null}
       {' | '}
-      <Link onClick={() => console.log('Iwas clicked')} to="/profile/history">
-        History
-      </Link>
+      <Link to={`/profile/${auth.user.id}`}>Profile</Link>
       {auth.user ? logout : null}
-    </>
+    </div>
   );
 };

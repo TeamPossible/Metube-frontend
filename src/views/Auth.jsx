@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { signUp, signIn } from '../utils/fetch-utils';
+import styles from '../App.css'
+
 
 export const Auth = () => {
   const location = useLocation();
@@ -17,7 +19,6 @@ export const Auth = () => {
     e.preventDefault();
     try {
       const res = await signIn({ password, email });
-      console.log(res);
       setUser(res);
       window.localStorage.setItem('user', JSON.stringify(res));
       history.push(location.state.from);
@@ -30,7 +31,6 @@ export const Auth = () => {
     e.preventDefault();
     try {
       const res = await signUp({ username, password, email });
-      console.log('CREATE USER', res);
       setUser(res);
       window.localStorage.setItem('user', JSON.stringify(res));
       history.push(location.state.from);
@@ -43,7 +43,7 @@ export const Auth = () => {
 
   hasAccount
     ? (content = (
-        <>
+        <div className={styles['auth']}>
           <form onSubmit={handleSignIn}>
             <legend>Sign In</legend>
             <input
@@ -65,10 +65,10 @@ export const Auth = () => {
               Don't have an account?
             </button>
           </form>
-        </>
+        </div>
       ))
     : (content = (
-        <>
+        <div className={styles['auth']}>
           <form onSubmit={handleSignUp}>
             <legend>Sign Up</legend>
             <input
@@ -97,7 +97,7 @@ export const Auth = () => {
               Already have an account?
             </button>
           </form>
-        </>
+        </div>
       ));
 
   return content;

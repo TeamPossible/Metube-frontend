@@ -1,4 +1,5 @@
 import { client } from '../services/client';
+import { mungeArgs } from '../services/mungeArgs';
 
 export const signUp = async ({ username, password, email }) => {
   try {
@@ -15,7 +16,6 @@ export const signUp = async ({ username, password, email }) => {
       mode: 'cors',
       credentials: 'include',
     });
-    console.log('RESPONSE FROM SIGN UP', res);
     if (!res.ok) throw new Error('Invalid login credentials');
     return res.json();
   } catch (error) {
@@ -105,7 +105,6 @@ export const getAllMedia = async () => {
       credentials: 'include',
     });
     if (!res.ok) throw new Error('Something went wrong with the fetch request');
-    console.log(res);
     const response = await res.json();
     return response;
   } catch (error) {
@@ -114,8 +113,6 @@ export const getAllMedia = async () => {
 };
 
 export const getById = async (id) => {
-  console.log('ID IN FETCH', id);
-
   try {
     const res = await fetch(
       `${process.env.API_URL}/api/v1/media/videos/${id}`,
@@ -130,7 +127,6 @@ export const getById = async (id) => {
     );
     if (!res.ok) throw new Error('Invalid login credentials');
     const response = await res.json();
-    console.log('RESPONSE', response);
     return response;
   } catch (error) {
     throw error;
@@ -151,14 +147,19 @@ export const getCommentsById = async (id) => {
     if (response === null) {
       return [];
     }
-    console.log('COMMENT RESPONSE', response);
     return response;
   } catch (error) {
     throw error;
   }
 };
 
-export const addComment = async (user_id, comment, video_id, username) => {
+export const addComment = async (
+  user_id,
+  comment,
+  video_id,
+  username,
+  avatar
+) => {
   try {
     const res = await fetch(`${process.env.API_URL}/api/v1/comment`, {
       method: 'POST',
@@ -170,15 +171,56 @@ export const addComment = async (user_id, comment, video_id, username) => {
         comment,
         video_id,
         username,
+        avatar,
       }),
       mode: 'cors',
       credentials: 'include',
     });
     if (!res.ok) console.log('ERROR RESPONSE', res);
     const response = await res.json();
-    console.log('COMMENT RESPONSE', response);
     return response;
   } catch (error) {
     throw error;
   }
 };
+
+const avatarBucket = async (user_id, media) => {
+  const response = await client.storage
+    .from('avatars')
+    .upload(`${user_id}/${media.name}`, media, {
+      cacheControl: '3600',
+      upsert: true,
+    });
+};
+
+export const updateProfile = async (user, bio, avatar, dob) => {
+  console.log('AVATAR', user);
+
+  const { newBio, newDob, newAvatar } = mungeArgs(user, bio, avatar, dob);
+  try {
+    const res = await fetch(`${process.env.API_URL}/api/v1/users/${user.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: user.username,
+        bio: newBio,
+        avatar: newAvatar,
+        dob: newDob,
+        id: user.id,
+      }),
+      mode: 'cors',
+      credentials: 'include',
+    });
+    if (!res.ok) console.log('ERROR RESPONSE', res);
+    avatar?.name ? await avatarBucket(user.id, avatar) : null;
+    const response = await res.json();
+    console.log('UPDATE RESPONSE', response);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// 'Access-Control-Allow-Origin': 'https://https://heartfelt-chaja-495e99.netlify.app'
