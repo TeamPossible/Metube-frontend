@@ -1,7 +1,6 @@
 import styles from './VideoDisplay.css';
 
 export const VideoDetail = ({ video }) => {
-  console.log('VIDEO DETAIL', video);
   return (
     <div className={styles['media-container']}>
       <video src={video.video_url} controls />

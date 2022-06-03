@@ -10,6 +10,7 @@ export const CommentsDisplay = ({
   video,
   username,
   fetch,
+  avatar,
 }) => {
   const { handleAddComment } = useData();
   const [newComment, setNewComment] = useState('');
@@ -18,14 +19,20 @@ export const CommentsDisplay = ({
   if (comments === null) {
     setIsNull(true);
   }
-  console.log(video, 'ID !!!');
 
   const tryMap = () => {
     try {
       let commentsArray;
       comments &&
         (commentsArray = comments.map((comment, index) => {
-          return <Comment key={index} comment={comment} index={index} />;
+          return (
+            <Comment
+              key={index}
+              comment={comment}
+              index={index}
+              avatar={avatar}
+            />
+          );
         }));
       return commentsArray;
     } catch (error) {
@@ -42,9 +49,9 @@ export const CommentsDisplay = ({
       user_id,
       newComment,
       video.video_id,
-      username
+      username,
+      avatar
     );
-    console.log(commentUpload);
     await fetch();
   };
 

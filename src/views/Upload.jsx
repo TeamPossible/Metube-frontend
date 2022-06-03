@@ -15,24 +15,10 @@ export const Upload = () => {
   const [description, setDescription] = useState('');
 
   const handleSubmit = async (e) => {
-    console.log(user);
     e.preventDefault();
-    // const submission = media.map(async (video) => {
-    //   const upload = await uploadVideo(user.id, title, description, video);
-    //   handleAdd(upload);
-    //   return upload;
-    // });
-    console.log('MEDIA UPLOAD CHECK', media[0]);
     const upload = await uploadVideo(user.id, title, description, media[0]);
     handleAdd(upload);
     setMedia({});
-    // <Redirect
-    //   push={true}
-    //   to={{
-    //     pathname: `/watch/${upload.video_id}`,
-    //     // state: { from: location },
-    //   }}
-    // />;
     history.push(`/watch/${upload.video_id}`);
   };
 

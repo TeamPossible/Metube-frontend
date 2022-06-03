@@ -1,6 +1,6 @@
 import styles from './Comment.css';
 
-export const Comment = ({ comment, index }) => {
+export const Comment = ({ comment, index, avatar }) => {
   return (
     <div className={styles['comment-container']} key={index}>
       <img className={styles['avatar']} src={comment.avatar}></img>

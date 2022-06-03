@@ -2,7 +2,6 @@ import styles from './VideoDisplay.css';
 import { Link } from 'react-router-dom';
 
 export const VideoDisplay = ({ video }) => {
-  console.log('GETTING CLOSER', video);
   return (
     <div className={styles['post-container']}>
       <Link to={`/watch/${video.video_id}`}>
@@ -13,7 +12,6 @@ export const VideoDisplay = ({ video }) => {
           <img src="./anubis.svg" className={styles.avatar}></img>
           <p className={styles['video-title']}>{video.title}</p>
         </section>
-
         <span>{video?.username}</span>
         <p>{video.description}</p>
       </div>

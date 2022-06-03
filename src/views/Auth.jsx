@@ -19,7 +19,6 @@ export const Auth = () => {
     e.preventDefault();
     try {
       const res = await signIn({ password, email });
-      console.log(res);
       setUser(res);
       window.localStorage.setItem('user', JSON.stringify(res));
       history.push(location.state.from);
@@ -32,7 +31,6 @@ export const Auth = () => {
     e.preventDefault();
     try {
       const res = await signUp({ username, password, email });
-      console.log('CREATE USER', res);
       setUser(res);
       window.localStorage.setItem('user', JSON.stringify(res));
       history.push(location.state.from);

@@ -1,23 +1,21 @@
 html, body, #root, .App {
-    height: 100vh;
+    height: 100%;
    
   }
   
-  #root {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  body {
+    background-image: url('./assets/background.jpg') ;
+    background-size: cover;
+    background-position: center;
   }
 
 .app {
     height: 100%;
     
-    background-size: cover;
-    background-position: center;
 }
 
 .header-bar {
-  font-size: calc(10px + 2vmin);
+  font-size: calc(6px + 2vmin);
   font-family: 'Press Start 2P', cursive;
   text-shadow: 4px 4px blue;
   border-radius: 60px;
@@ -86,6 +84,15 @@ button {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin: 20px;
+  width: 200px; 
+  height: 100px;    
+  
+  -webkit-animation: spin 4s infinite linear;
+}
+@-webkit-keyframes spin {
+  0%  {-webkit-transform: rotate(0deg);}
+  100% {-webkit-transform: rotate(360deg);}   
 }
 
 button:hover {
@@ -156,4 +163,30 @@ button:active {
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF0F7B", endColorstr="#F89B29", GradientType=1 );;
     align-items: center;
     box-shadow: 18px 10px yellow ;
+
+}
+
+.profile {
+  margin: 60px;
+  border-radius: 20px;
+  width: 1000px;
+  height: 800px;
+
+  font-family: 'Monoton', cursive;
+    font-size: calc(10px + 2vmin);
+    background-color: hsla(333, 100%, 53%, 1);
+    cursor: pointer;
+    background: linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
+    color: #28b8d5;
+    text-shadow: 4px 4px blue;
+    background: -moz-linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
+    
+    background: -webkit-linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
+
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF0F7B", endColorstr="#F89B29", GradientType=1 );;
+    align-items: center;
+    box-shadow: 18px 10px yellow ;
+}
+img {
+  border-radius: 20px ;
 }
