@@ -16,7 +16,9 @@ jobs:
     - run: npm test
       env:
         CI: true
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/
+        API_URL: ${{ secrets.API_URL }}
+        PORT: ${{ secrets.PORT }}
         SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
         SUPABASE_BUCKET: ${{ secrets.SUPABASE_BUCKET }}

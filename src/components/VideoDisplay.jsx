@@ -2,7 +2,6 @@ import styles from './VideoDisplay.css';
 import { Link } from 'react-router-dom';
 
 export const VideoDisplay = ({ video }) => {
-  console.log('GETTING CLOSER', video);
   return (
     <div className={styles['post-container']}>
       <Link to={`/watch/${video.video_id}`}>

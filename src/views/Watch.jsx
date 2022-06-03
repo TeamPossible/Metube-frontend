@@ -2,12 +2,11 @@ import { VideoDetail } from '../components/VideoDetail';
 import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getById, getCommentsById } from '../utils/fetch-utils';
-import { CommentsDisplay } from '../../Components/CommentsDisplay';
+import { CommentsDisplay } from '../components/CommentsDisplay';
 import { useAuth } from '../hooks/useAuth';
 
 export const Watch = () => {
   const { user } = useAuth();
-  console.log(user);
   const [media, setMedia] = useState(null);
 
   const [comments, setComments] = useState([]);
@@ -36,14 +35,10 @@ export const Watch = () => {
       throw new Error('No comments for this video');
     }
   }, []);
-  console.log(comments, 'COMMENTS BEFORE RENDER');
   return (
     <>
       {media ? (
         <>
-          {user.id === media.user_id ? (
-            <button onClick={editRedirect}>Edit Video</button>
-          ) : null}
           <VideoDetail video={media} index={'1'} />
           <CommentsDisplay
             comments={comments}
@@ -51,6 +46,7 @@ export const Watch = () => {
             video={media}
             username={user.username}
             fetch={refetchComments}
+            avatar={user.avatar}
           />
         </>
       ) : (
