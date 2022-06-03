@@ -99,7 +99,6 @@ export const getAllMedia = async () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://https://heartfelt-chaja-495e99.netlify.app'
       },
       mode: 'cors',
       credentials: 'include',
@@ -182,3 +181,5 @@ export const addComment = async (user_id, comment, video_id, username) => {
     throw error;
   }
 };
+
+// 'Access-Control-Allow-Origin': 'https://https://heartfelt-chaja-495e99.netlify.app'
