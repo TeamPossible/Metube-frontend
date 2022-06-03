@@ -2,7 +2,7 @@ import { VideoDetail } from '../components/VideoDetail';
 import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getById, getCommentsById } from '../utils/fetch-utils';
-import { CommentsDisplay } from '../Components/CommentsDisplay';
+import { CommentsDisplay } from '../components/CommentsDisplay';
 import { useAuth } from '../hooks/useAuth';
 
 export const Watch = () => {
