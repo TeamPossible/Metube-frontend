@@ -10,6 +10,7 @@ export const CommentsDisplay = ({
   video,
   username,
   fetch,
+  avatar,
 }) => {
   const { handleAddComment } = useData();
   const [newComment, setNewComment] = useState('');
@@ -18,14 +19,21 @@ export const CommentsDisplay = ({
   if (comments === null) {
     setIsNull(true);
   }
-  console.log(video, 'ID !!!');
+  console.log('I SHOULD BE AN AVATAR', avatar);
 
   const tryMap = () => {
     try {
       let commentsArray;
       comments &&
         (commentsArray = comments.map((comment, index) => {
-          return <Comment key={index} comment={comment} index={index} />;
+          return (
+            <Comment
+              key={index}
+              comment={comment}
+              index={index}
+              avatar={avatar}
+            />
+          );
         }));
       return commentsArray;
     } catch (error) {
@@ -37,12 +45,14 @@ export const CommentsDisplay = ({
   isNull ? (content = <p>No comments to display</p>) : (content = tryMap());
 
   const handleSubmit = async (e) => {
+    console.log('WHERE IS MY AVATAR', avatar);
     e.preventDefault();
     const commentUpload = await addComment(
       user_id,
       newComment,
       video.video_id,
-      username
+      username,
+      avatar
     );
     console.log(commentUpload);
     await fetch();

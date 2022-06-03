@@ -7,7 +7,7 @@ import { useAuth } from '../hooks/useAuth';
 
 export const Watch = () => {
   const { user } = useAuth();
-  console.log(user);
+  console.log('DO I HAVE AN AVATAR', user);
   const [media, setMedia] = useState(null);
 
   const [comments, setComments] = useState([]);
@@ -51,6 +51,7 @@ export const Watch = () => {
             video={media}
             username={user.username}
             fetch={refetchComments}
+            avatar={user.avatar}
           />
         </>
       ) : (

@@ -1,16 +1,28 @@
 import { useState } from 'react';
 import styles from './EditProfile.css';
+import { updateProfile } from '../utils/fetch-utils';
+import { useAuth } from '../hooks/useAuth';
 
 export const EditProfile = () => {
+  const { user } = useAuth();
+  console.log('UUUUSSSEEERRRR', user);
   const [bio, setBio] = useState('');
   const [dob, setDob] = useState('');
   const [avatar, setAvatar] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('BIO', bio);
     console.log('AVATAR', avatar);
     console.log('DOB', dob);
+    const response = await updateProfile(
+      user.username,
+      bio,
+      avatar[0],
+      dob,
+      user.id
+    );
+    console.log(response);
   };
 
   return (

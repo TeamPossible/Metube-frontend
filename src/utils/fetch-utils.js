@@ -157,7 +157,13 @@ export const getCommentsById = async (id) => {
   }
 };
 
-export const addComment = async (user_id, comment, video_id, username) => {
+export const addComment = async (
+  user_id,
+  comment,
+  video_id,
+  username,
+  avatar
+) => {
   try {
     const res = await fetch(`${process.env.API_URL}/api/v1/comment`, {
       method: 'POST',
@@ -169,6 +175,7 @@ export const addComment = async (user_id, comment, video_id, username) => {
         comment,
         video_id,
         username,
+        avatar,
       }),
       mode: 'cors',
       credentials: 'include',
@@ -176,6 +183,44 @@ export const addComment = async (user_id, comment, video_id, username) => {
     if (!res.ok) console.log('ERROR RESPONSE', res);
     const response = await res.json();
     console.log('COMMENT RESPONSE', response);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const avatarBucket = async (user_id, media) => {
+  const response = await client.storage
+    .from('avatars')
+    .upload(`${user_id}/${media.name}`, media, {
+      cacheControl: '3600',
+      upsert: false,
+    });
+  response;
+};
+
+export const updateProfile = async (username, bio, avatar, dob, id) => {
+  const bucketUrl =
+    'https://quwukbuqxqtapoxrimqd.supabase.in/storage/v1/object/public/avatars';
+  try {
+    const res = await fetch(`${process.env.API_URL}/api/v1/users/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username,
+        bio,
+        avatar: `${bucketUrl}/${id}/${avatar.name}`,
+        dob,
+      }),
+      mode: 'cors',
+      credentials: 'include',
+    });
+    if (!res.ok) console.log('ERROR RESPONSE', res);
+    await avatarBucket(id, avatar);
+    const response = await res.json();
+    console.log('UPDATE RESPONSE', response);
     return response;
   } catch (error) {
     throw error;
