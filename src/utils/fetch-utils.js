@@ -194,7 +194,7 @@ const avatarBucket = async (user_id, media) => {
     .from('avatars')
     .upload(`${user_id}/${media.name}`, media, {
       cacheControl: '3600',
-      upsert: false,
+      upsert: true,
     });
   response;
 };

@@ -2,9 +2,10 @@ import { useState } from 'react';
 import styles from './EditProfile.css';
 import { updateProfile } from '../utils/fetch-utils';
 import { useAuth } from '../hooks/useAuth';
+import { useUser } from '../hooks/useUser';
 
 export const EditProfile = () => {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   console.log('UUUUSSSEEERRRR', user);
   const [bio, setBio] = useState('');
   const [dob, setDob] = useState('');
@@ -23,6 +24,7 @@ export const EditProfile = () => {
       user.id
     );
     console.log(response);
+    setUser(response);
   };
 
   return (
