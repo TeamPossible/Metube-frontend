@@ -7,6 +7,7 @@ export const signUp = async ({ username, password, email }) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://https://heartfelt-chaja-495e99.netlify.app'
       },
       body: JSON.stringify({
         username,
@@ -29,6 +30,7 @@ export const signIn = async ({ password, email }) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://https://heartfelt-chaja-495e99.netlify.app'
       },
       body: JSON.stringify({
         password,
@@ -73,6 +75,7 @@ export const uploadVideo = async (user_id, title, description, media) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://https://heartfelt-chaja-495e99.netlify.app'
       },
       body: JSON.stringify({
         user_id,
@@ -120,6 +123,7 @@ export const getById = async (id) => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'https://https://heartfelt-chaja-495e99.netlify.app'
         },
         mode: 'cors',
         credentials: 'include',
@@ -139,6 +143,7 @@ export const getCommentsById = async (id) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://https://heartfelt-chaja-495e99.netlify.app'
       },
       mode: 'cors',
     });
@@ -165,6 +170,7 @@ export const addComment = async (
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://https://heartfelt-chaja-495e99.netlify.app'
       },
       body: JSON.stringify({
         user_id,
@@ -202,6 +208,7 @@ export const updateProfile = async (user, bio, avatar, dob) => {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://https://heartfelt-chaja-495e99.netlify.app'
       },
       body: JSON.stringify({
         user: user.username,
