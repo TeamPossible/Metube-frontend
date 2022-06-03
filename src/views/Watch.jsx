@@ -39,9 +39,6 @@ export const Watch = () => {
     <>
       {media ? (
         <>
-          {user.id === media.user_id ? (
-            <button onClick={editRedirect}>Edit Video</button>
-          ) : null}
           <VideoDetail video={media} index={'1'} />
           <CommentsDisplay
             comments={comments}
