@@ -1,9 +1,10 @@
 import styles from './App.css';
-import { Home } from './views/Home';
 import { Auth } from './views/Auth';
+import { Home } from './views/Home';
 import { Watch } from './views/Watch';
 import { Upload } from './views/Upload';
 import { Profile } from './views/Profile';
+import { AboutUs } from './views/AboutUs';
 import { Header } from './components/Header';
 import { EditMedia } from './views/EditUpload';
 import { Route, Switch } from 'react-router-dom';
@@ -47,6 +48,9 @@ export default function App() {
               </CheckAuth>
               <Route exact path="/upload/edit/:id">
                 <EditMedia />
+              </Route>
+              <Route exact path="/about-us">
+                <AboutUs />
               </Route>
             </Switch>
           </DataProvider>
