@@ -29,6 +29,7 @@ html, body, #root, .App {
   
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF0F7B", endColorstr="#F89B29", GradientType=1 );;
   align-items: center;
+
   box-shadow: 18px 10px yellow;
   
 }
@@ -58,6 +59,11 @@ html, body, #root, .App {
   60% {
     transform: translate3d(4px, 0, 0);
   }}
+
+
+  box-shadow: 18px 10px yellow
+  ;
+}
 
 .auth {
 width: 800px;
