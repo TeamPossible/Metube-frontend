@@ -19,7 +19,6 @@ export const CommentsDisplay = ({
   if (comments === null) {
     setIsNull(true);
   }
-  console.log('I SHOULD BE AN AVATAR', avatar);
 
   const tryMap = () => {
     try {
@@ -45,7 +44,6 @@ export const CommentsDisplay = ({
   isNull ? (content = <p>No comments to display</p>) : (content = tryMap());
 
   const handleSubmit = async (e) => {
-    console.log('WHERE IS MY AVATAR', avatar);
     e.preventDefault();
     const commentUpload = await addComment(
       user_id,
@@ -54,7 +52,6 @@ export const CommentsDisplay = ({
       username,
       avatar
     );
-    console.log(commentUpload);
     await fetch();
   };
 

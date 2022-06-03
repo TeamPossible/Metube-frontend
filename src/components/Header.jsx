@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 export const Header = () => {
   const location = useLocation();
   const auth = useAuth();
-  console.log('USER', auth);
 
   const handleLogOut = () => {
     window.localStorage.removeItem('user');
@@ -39,9 +38,7 @@ export const Header = () => {
         <Link to={`/profile/${auth.user.id}/edit`}>Edit Profile</Link>
       ) : null}
       {' | '}
-      <Link onClick={() => console.log('Iwas clicked')} to="/profile/history">
-        History
-      </Link>
+      <Link to={`/profile/${auth.user.id}`}>Profile</Link>
       {auth.user ? logout : null}
     </>
   );

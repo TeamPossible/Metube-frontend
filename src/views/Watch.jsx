@@ -7,7 +7,6 @@ import { useAuth } from '../hooks/useAuth';
 
 export const Watch = () => {
   const { user } = useAuth();
-  console.log('DO I HAVE AN AVATAR', user);
   const [media, setMedia] = useState(null);
 
   const [comments, setComments] = useState([]);
@@ -36,7 +35,6 @@ export const Watch = () => {
       throw new Error('No comments for this video');
     }
   }, []);
-  console.log(comments, 'COMMENTS BEFORE RENDER');
   return (
     <>
       {media ? (

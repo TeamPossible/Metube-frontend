@@ -6,8 +6,6 @@ import { useEffect } from 'react';
 export const Home = () => {
   const { videos } = useData();
 
-  console.log('MEDIA', videos);
-
   return (
     <div className={styles['home-container']}>
       {videos?.length > 0 ? (

@@ -14,9 +14,7 @@ export const Upload = () => {
   const [description, setDescription] = useState('');
 
   const handleSubmit = async (e) => {
-    console.log(user);
     e.preventDefault();
-    console.log('MEDIA UPLOAD CHECK', media[0]);
     const upload = await uploadVideo(user.id, title, description, media[0]);
     handleAdd(upload);
     setMedia({});
