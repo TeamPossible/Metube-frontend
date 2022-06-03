@@ -8,9 +8,13 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    try{
     const userItem = window.localStorage.getItem('user');
     console.log(JSON.parse(userItem).profile);
     setUser(JSON.parse(userItem).profile);
+    } catch (error) {
+      console.error();
+    }
   }, []);
 
   return (
