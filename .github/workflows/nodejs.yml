@@ -16,6 +16,13 @@ jobs:
     - run: npm test
       env:
         CI: true
-        DATABASE_URL: {{ secrets.DATABASE_URL }}
-        API_URL: {{ secrets.API_URL }}
-        PORT: {{ secrets.PORT }}
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/
+        API_URL: ${{ secrets.API_URL }}
+        PORT: ${{ secrets.PORT }}
+        SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        SUPABASE_BUCKET: ${{ secrets.SUPABASE_BUCKET }}
+        COOKIE_NAME: ${{ secrets.COOKIE_NAME }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        SALT_ROUNDS: ${{ secrets.SALT_ROUNDS }}
+

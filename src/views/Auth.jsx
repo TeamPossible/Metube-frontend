@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { signUp, signIn } from '../utils/fetch-utils';
+import styles from '../App.css'
 
 
 export const Auth = () => {
@@ -31,6 +32,7 @@ export const Auth = () => {
     e.preventDefault();
     try {
       const res = await signUp({ username, password, email });
+      console.log('CREATE USER', res);
       setUser(res);
       window.localStorage.setItem('user', JSON.stringify(res));
       history.push(location.state.from);
@@ -43,7 +45,7 @@ export const Auth = () => {
 
   hasAccount
     ? (content = (
-        <>
+        <div className={styles['auth']}>
           <form onSubmit={handleSignIn}>
             <legend>Sign In</legend>
             <input
@@ -65,10 +67,10 @@ export const Auth = () => {
               Don't have an account?
             </button>
           </form>
-        </>
+        </div>
       ))
     : (content = (
-        <>
+        <div className={styles['auth']}>
           <form onSubmit={handleSignUp}>
             <legend>Sign Up</legend>
             <input
@@ -97,9 +99,76 @@ export const Auth = () => {
               Already have an account?
             </button>
           </form>
-        </>
+        </div>
       ));
 
   return content;
 };
+
+//   let content;
+
+//   hasAccount
+//     ? (content = (
+//         <>
+//           <form onSubmit={handleSignIn}>
+//             <legend>Sign In</legend>
+//             <input
+//               placeholder="email"
+//               type="text"
+//               name="email"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//             ></input>
+//             <input
+//               placeholder="password"
+//               type="password"
+//               name="password"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//             ></input>
+//             <button>Submit</button>
+//             <button onClick={() => setHasAccount(false)}>
+//               Don't have an account?
+//             </button>
+//           </form>
+//         </>
+//       ))
+//     : (content = (
+//         <>
+//           <form onSubmit={handleSignUp}>
+//             <legend>Sign Up</legend>
+//             <input
+//               placeholder="email"
+//               type="text"
+//               name="email"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//             ></input>
+//             <input
+//               placeholder="password"
+//               type="password"
+//               name="password"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//             ></input>
+//             <input
+//               placeholder="username"
+//               type="username"
+//               name="username"
+//               value={username}
+//               onChange={(e) => setUsername(e.target.value)}
+//             ></input>
+//             <button>Submit</button>
+//             <button onClick={() => setHasAccount(true)}>
+//               Already have an account?
+//             </button>
+//           </form>
+//         </>
+//       ));
+
+//   return (
+//     content
+//   );
+
+// };
 // This line exists for no reason

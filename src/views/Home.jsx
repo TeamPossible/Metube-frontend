@@ -1,22 +1,28 @@
-import { useEffect, useState } from 'react';
-import { getAllMedia } from '../utils/fetch-utils';
+import { VideoDisplay } from '../components/VideoDisplay';
+import { useData } from '../hooks/useData';
+import styles from './Home.css';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom'
 
 export const Home = () => {
-  const [media, setMedia] = useState([]);
-  useEffect(() => {
-    getAllMedia().then((files) => setMedia(files));
-  }, []);
+  const { videos } = useData();
+
+  console.log('MEDIA', videos);
 
   return (
-    <>
-      <h1>A List Of Videos Should Be Displayed</h1>
-      {media?.length > 0 ? (
-        media.map((video, index) => {
-          return <video key={index} src={video.video} controls width="200px" />;
+    <div className={styles['home-container']}>
+      {videos?.length > 0 ? (
+        videos.map((video, index) => {
+          return (
+            <div key={index} className={styles['media-containers']}>
+              <Link to={`/watch/${video.video_id}`}><VideoDisplay video={video} /></Link>
+              
+            </div>
+          );
         })
       ) : (
         <h1>No Media To Display</h1>
       )}
-    </>
+    </div>
   );
 };
