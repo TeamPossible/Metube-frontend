@@ -34,6 +34,8 @@ export const Header = () => {
         <img src="../uploadButton.png" width={'35px'}></img>
       </Link>
       {' | '}
+      <Link to="/about-us">About Us</Link>
+      {' | '}
       {auth.user ? (
         <Link to={`/profile/${auth.user.id}/edit`}>Edit Profile</Link>
       ) : null}

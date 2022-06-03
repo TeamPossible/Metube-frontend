@@ -12,7 +12,6 @@ export const VideoDisplay = ({ video }) => {
           <img src="./anubis.svg" className={styles.avatar}></img>
           <p className={styles['video-title']}>{video.title}</p>
         </section>
-
         <span>{video?.username}</span>
         <p>{video.description}</p>
       </div>
