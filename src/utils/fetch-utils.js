@@ -100,6 +100,7 @@ export const getAllMedia = async () => {
       headers: {
         'Content-Type': 'application/json',
       },
+      ACCESS_CONTROL_ORIGIN: 'https://metube-final-project.herokuapp.com/';
       mode: 'cors',
       credentials: 'include',
     });
