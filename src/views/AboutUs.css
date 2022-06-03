@@ -1,10 +1,29 @@
 .about-container {
+
+    margin: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-}
+    font-size: calc(10px + 2vmin);
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 4px 4px blue;
+    border-radius: 60px;
+    background-color: hsla(333, 100%, 53%, 1);
+    cursor: pointer;
+    background: linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
+    
+    background: -moz-linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
+    
+    background: -webkit-linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF0F7B", endColorstr="#F89B29", GradientType=1 );;
+    align-items: center;
+    box-shadow: 18px 10px yellow
+    ;
+  }
+
 
 .about-img {
     border-radius: 10%;

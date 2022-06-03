@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { signOut } from '../utils/fetch-utils';
 import { useLocation } from 'react-router-dom';
+import styles from '../App.css';
 
 export const Header = () => {
   const location = useLocation();
@@ -25,11 +26,12 @@ export const Header = () => {
     </>
   );
   return (
-    <>
+    <div className={styles['header-bar']}>
       <Link to="/">
         <img src="../MeTube-nobg.png" width={'100px'}></img>
       </Link>
       {' | '}
+      
       <Link to="/upload">
         <img src="../uploadButton.png" width={'35px'}></img>
       </Link>
@@ -42,6 +44,6 @@ export const Header = () => {
       {' | '}
       <Link to={`/profile/${auth.user.id}`}>Profile</Link>
       {auth.user ? logout : null}
-    </>
+    </div>
   );
 };

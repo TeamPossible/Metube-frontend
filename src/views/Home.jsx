@@ -2,6 +2,7 @@ import { VideoDisplay } from '../components/VideoDisplay';
 import { useData } from '../hooks/useData';
 import styles from './Home.css';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom'
 
 export const Home = () => {
   const { videos } = useData();
@@ -12,7 +13,8 @@ export const Home = () => {
         videos.map((video, index) => {
           return (
             <div key={index} className={styles['media-containers']}>
-              <VideoDisplay video={video} />
+              <Link to={`/watch/${video.video_id}`}><VideoDisplay video={video} /></Link>
+              
             </div>
           );
         })

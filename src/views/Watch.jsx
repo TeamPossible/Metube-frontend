@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getById, getCommentsById } from '../utils/fetch-utils';
 import { CommentsDisplay } from '../components/CommentsDisplay';
 import { useAuth } from '../hooks/useAuth';
+import styles from '../App.css';
 
 export const Watch = () => {
   const { user } = useAuth();
@@ -40,6 +41,7 @@ export const Watch = () => {
       {media ? (
         <>
           <VideoDetail video={media} index={'1'} />
+          <div className={styles['watch']}>
           <CommentsDisplay
             comments={comments}
             user_id={user.id}
@@ -48,6 +50,7 @@ export const Watch = () => {
             fetch={refetchComments}
             avatar={user.avatar}
           />
+          </div>
         </>
       ) : (
         <h1>Just a moment while we fetch your video</h1>

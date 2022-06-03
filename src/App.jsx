@@ -18,7 +18,7 @@ import { LoadingProvider } from './context/LoadingProvider';
 
 export default function App() {
   return (
-    <div className={styles.app}>
+    <div className="app">
       <AuthProvider>
         <Header />
 

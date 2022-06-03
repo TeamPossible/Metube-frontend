@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import styles from './EditProfile.css';
+// import styles from './EditProfile.css';
 import { updateProfile } from '../utils/fetch-utils';
 import { useAuth } from '../hooks/useAuth';
 import { useHistory } from 'react-router-dom';
+import styles from '../App.css'
 
 export const EditProfile = () => {
   const { user, setUser } = useAuth();
@@ -20,7 +21,7 @@ export const EditProfile = () => {
   };
 
   return (
-    <div>
+    <div className={styles['edit-prof']}>
       <h1>You can set Profile info here</h1>
       <form className={styles['profile-edit-form']} onSubmit={handleSubmit}>
         <legend>Edit Profile Info</legend>

@@ -3,6 +3,7 @@ import { uploadVideo } from '../utils/fetch-utils';
 import { useAuth } from '../hooks/useAuth';
 import { useData } from '../hooks/useData';
 import { useHistory, Redirect } from 'react-router-dom';
+import styles from '../App.css'
 import { render } from 'react-dom';
 
 export const Upload = () => {
@@ -22,6 +23,7 @@ export const Upload = () => {
   };
 
   return (
+    <div className={styles['upload-form']}>
     <form onSubmit={handleSubmit}>
       <legend>Upload</legend>
       <label htmlFor="media">Select Video</label>
@@ -47,5 +49,6 @@ export const Upload = () => {
       <br></br>
       <button>Upload Video</button>
     </form>
+    </div>
   );
 };
