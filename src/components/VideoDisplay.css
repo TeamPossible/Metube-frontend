@@ -63,6 +63,15 @@
       box-shadow: 18px 10px yellow ;
 }
 
+
+video {
+    border-radius: 30px;
+    margin: 40px;
+
+    box-shadow: 10px 10px blue;
+
+
+
 video {
     border-radius: 30px;
     margin: 40px;

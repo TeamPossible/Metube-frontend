@@ -208,7 +208,10 @@ export const updateProfile = async (user, bio, avatar, dob) => {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
+
+
         'Access-Control-Allow-Origin': 'https://https://heartfelt-chaja-495e99.netlify.app'
+
       },
       body: JSON.stringify({
         user: user.username,
