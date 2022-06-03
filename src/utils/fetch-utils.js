@@ -99,7 +99,7 @@ export const getAllMedia = async () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://metube-final-project.herokuapp.com'
+        'Access-Control-Allow-Origin': 'https://https://heartfelt-chaja-495e99.netlify.app'
       },
       mode: 'cors',
       credentials: 'include',
